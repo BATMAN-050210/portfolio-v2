@@ -1,87 +1,77 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { Sparkles, Layers, Palette, Terminal, Zap } from "lucide-react";
 
 export default function Services() {
   const containerRef = useRef(null);
 
-  // Track scroll inside the services section
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start center", "end center"]
   });
 
-  // Grow path stroke from 0 to 1 based on scroll
   const pathLength = useTransform(scrollYProgress, [0.05, 0.85], [0, 1]);
 
   const steps = [
     {
       num: "01",
-      title: "Define",
-      desc: "Analyzing your visual requirements, technical stack, and target audience to build a solid architectural roadmap.",
-      position: "right", // Alternating cards
-      rotation: "rotate-2",
+      icon: Layers,
+      title: "Deconstruct & Define",
+      desc: "Deep analysis of system requirements, user personas, LLM orchestration constraints, and scalable API architecture.",
+      rotation: "rotate-1",
       align: "self-end md:mr-24"
     },
     {
       num: "02",
-      title: "Design",
-      desc: "Creating high-fidelity UI mockups and prototyping animations to guarantee an outstanding aesthetic and visual flow.",
-      position: "left",
-      rotation: "-rotate-2",
+      icon: Palette,
+      title: "Design & Prototype",
+      desc: "Creating high-voltage UI mockups, testing interactive physics, and choreographing smooth micro-animations.",
+      rotation: "-rotate-1",
       align: "self-start md:ml-24"
     },
     {
       num: "03",
-      title: "Build",
-      desc: "Writing modular React/Next.js client code, styling with Tailwind, and configuring high-performance backend endpoints.",
-      position: "right",
-      rotation: "rotate-3",
+      icon: Terminal,
+      title: "Build & Automate",
+      desc: "Engineering high-performance React/Next.js frontends, wiring vector search, and constructing resilient automated n8n workflows.",
+      rotation: "rotate-2",
       align: "self-end md:mr-24"
     },
     {
       num: "04",
-      title: "Launch",
-      desc: "Auditing performance, running comprehensive tests, optimizing search metrics, and deploying to global hosting arrays.",
-      position: "left",
-      rotation: "-rotate-3",
+      icon: Zap,
+      title: "Deploy & Scale",
+      desc: "Rigorous performance audits, lighthouse optimization, sub-millisecond edge latency, and seamless global deployment.",
+      rotation: "-rotate-2",
       align: "self-start md:ml-24"
     }
   ];
 
   return (
     <section
-      id="skills" // Using "skills" as section anchor or we can add skills/services
+      id="process"
       ref={containerRef}
-      className="relative bg-white text-black py-24 md:py-36 w-full overflow-hidden grid-pattern"
+      className="relative bg-[#07070A] text-white py-24 md:py-36 w-full overflow-hidden grid-pattern border-t border-white/5"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative">
+      {/* Ambient Glows */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary-red/10 rounded-full blur-[160px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         {/* Header Section */}
         <div className="flex flex-col items-center text-center mb-24 relative">
-          <div className="inline-block px-4 py-1.5 rounded-full border border-black/10 bg-black/5 text-xs font-mono font-bold tracking-widest uppercase mb-4 shadow-sm">
-            How we work
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary-red/30 bg-primary-red/10 text-xs font-mono font-bold tracking-widest uppercase mb-4 text-primary-red">
+            <Sparkles size={12} className="text-primary-red" />
+            ENGINEERING WORKFLOW
           </div>
 
           <div className="relative max-w-3xl">
-            <h2 className="text-4xl md:text-6xl font-black tracking-tight leading-tight uppercase font-sans text-black">
-              Let us show you how we drive your brand to new heights
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight uppercase font-sans text-white">
+              Precision Architecture from <span className="bg-gradient-to-r from-primary-red via-rose-400 to-amber-300 bg-clip-text text-transparent">Concept to Launch.</span>
             </h2>
-
-            {/* Hand-drawn sketch arrow (SVG) */}
-            <div className="absolute -right-12 -bottom-10 hidden lg:block text-primary-red">
-              <svg width="60" height="60" viewBox="0 0 60 60" fill="none" className="rotate-[25deg]">
-                <path
-                  d="M10 10 Q35 5, 40 35 T20 50 M20 50 L15 40 M20 50 L30 48"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  fill="none"
-                />
-              </svg>
-            </div>
           </div>
 
-          <p className="text-gray-500 font-light text-base md:text-lg max-w-lg mt-6 leading-relaxed">
-            Our step-by-step process delivers pixel-perfect interfaces integrated with high-performance production code.
+          <p className="text-neutral-400 font-light text-base md:text-lg max-w-xl mt-6 leading-relaxed">
+            Every project follows a disciplined engineering lifecycle designed for maximum velocity, uncompromised performance, and unforgettable aesthetics.
           </p>
         </div>
 
@@ -95,27 +85,25 @@ export default function Services() {
               preserveAspectRatio="none"
               className="w-full h-full"
             >
-              {/* Reference/Background Line */}
               <path
                 d="M 600,0 C 850,150 850,250 600,400 C 350,550 350,650 600,800 C 850,950 850,1050 600,1200"
-                stroke="#e5e7eb"
-                strokeWidth="4"
+                stroke="rgba(255, 255, 255, 0.08)"
+                strokeWidth="3"
                 strokeDasharray="8 8"
               />
 
-              {/* Animated Growth Line */}
               <motion.path
                 d="M 600,0 C 850,150 850,250 600,400 C 350,550 350,650 600,800 C 850,950 850,1050 600,1200"
-                stroke="#FF2A2A"
-                strokeWidth="5"
+                stroke="#FF2E5B"
+                strokeWidth="4"
                 strokeLinecap="round"
                 style={{ pathLength }}
-                className="drop-shadow-[0_2px_8px_rgba(255,42,42,0.3)]"
+                className="drop-shadow-[0_0_12px_#FF2E5B]"
               />
             </svg>
           </div>
 
-          {/* Timeline SVG (Mobile / Central Vertical) */}
+          {/* Timeline SVG (Mobile) */}
           <div className="absolute inset-0 w-full h-full md:hidden pointer-events-none">
             <svg
               viewBox="0 0 200 1200"
@@ -125,15 +113,16 @@ export default function Services() {
             >
               <path
                 d="M 100,0 L 100,1200"
-                stroke="#e5e7eb"
-                strokeWidth="3"
+                stroke="rgba(255, 255, 255, 0.08)"
+                strokeWidth="2"
                 strokeDasharray="6 6"
               />
               <motion.path
                 d="M 100,0 L 100,1200"
-                stroke="#FF2A2A"
-                strokeWidth="4"
+                stroke="#FF2E5B"
+                strokeWidth="3"
                 style={{ pathLength }}
+                className="drop-shadow-[0_0_8px_#FF2E5B]"
               />
             </svg>
           </div>
@@ -143,39 +132,37 @@ export default function Services() {
             {steps.map((step, index) => (
               <div
                 key={index}
-                className={`w-full md:w-[45%] flex flex-col ${step.align}`}
+                className={`w-full md:w-[46%] flex flex-col ${step.align}`}
               >
-                {/* Scroll-triggered card */}
                 <motion.div
-                  initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                  initial={{ opacity: 0, y: 40, scale: 0.95 }}
                   whileInView={{
                     opacity: 1,
                     y: 0,
                     scale: 1,
                     transition: { duration: 0.6, type: "spring", stiffness: 80 }
                   }}
-                  viewport={{ once: false, amount: 0.4 }}
-                  whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-                  className={`relative flex flex-col p-8 md:p-10 rounded-[2rem] border-2 border-black/5 bg-white text-black shadow-lg cursor-default group transition-colors duration-500 hover:bg-primary-red hover:text-white hover:border-transparent hover:shadow-[0_20px_40px_rgba(255,42,42,0.25)] ${step.rotation}`}
+                  viewport={{ once: false, amount: 0.35 }}
+                  whileHover={{ scale: 1.03, y: -4, transition: { duration: 0.25 } }}
+                  className={`relative flex flex-col p-8 md:p-10 rounded-3xl border border-white/10 bg-[#101018]/90 backdrop-blur-xl text-white shadow-[0_15px_35px_rgba(0,0,0,0.6)] cursor-default group transition-all duration-300 hover:border-primary-red/50 hover:shadow-[0_0_35px_rgba(255,46,91,0.25)] ${step.rotation}`}
                 >
-                  {/* Active background overlay (for red transition glow) */}
-                  <div className="absolute inset-0 bg-primary-red opacity-0 group-hover:opacity-100 rounded-[2rem] transition-opacity duration-500 -z-10" />
-
-                  {/* Hole punch detail */}
-                  <div className="absolute top-4 left-1/2 -translate-x-1/2 w-4 h-4 bg-gray-200 border border-gray-300 rounded-full group-hover:bg-red-950 group-hover:border-red-900 transition-colors duration-500 shadow-inner" />
-
-                  {/* Step number in italic serif */}
-                  <span className="font-serif italic text-4xl md:text-5xl text-primary-red group-hover:text-white/80 transition-colors duration-500 mb-4 block leading-none font-bold">
-                    {step.num}
-                  </span>
+                  {/* Subtle top indicator */}
+                  <div className="flex items-center justify-between w-full mb-6">
+                    <span className="font-mono text-3xl md:text-4xl text-primary-red font-black tracking-tighter drop-shadow-[0_0_8px_rgba(255,46,91,0.6)]">
+                      {step.num}
+                    </span>
+                    <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-primary-red group-hover:scale-110 group-hover:bg-primary-red/10 transition-all duration-300">
+                      <step.icon size={20} />
+                    </div>
+                  </div>
 
                   {/* Heading */}
-                  <h3 className="text-2xl font-black tracking-tight uppercase mb-3 leading-none group-hover:text-white transition-colors duration-500">
+                  <h3 className="text-2xl font-black tracking-tight uppercase mb-3 leading-snug text-white group-hover:text-rose-200 transition-colors duration-300">
                     {step.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-500 group-hover:text-white/85 transition-colors duration-500 text-sm md:text-base font-light leading-relaxed">
+                  <p className="text-neutral-400 group-hover:text-neutral-300 text-sm md:text-base font-light leading-relaxed transition-colors duration-300">
                     {step.desc}
                   </p>
                 </motion.div>
@@ -185,14 +172,15 @@ export default function Services() {
         </div>
 
         {/* Bottom Section */}
-        <div className="flex justify-center items-center mt-32 relative">
+        <div className="flex justify-center items-center mt-28 relative">
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.85 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-block rotate-[-3deg] text-[#FF2A2A] font-serif italic text-3xl md:text-4xl font-semibold tracking-wider hover:scale-105 transition-transform"
+            className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-primary-red/30 bg-primary-red/10 text-primary-red font-mono text-base md:text-lg font-bold tracking-wider hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(255,46,91,0.25)]"
           >
-            Ready to be delivered!
+            <Sparkles size={18} />
+            <span>Built For Extreme Performance & Scale</span>
           </motion.div>
         </div>
       </div>

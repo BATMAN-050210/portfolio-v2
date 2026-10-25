@@ -1,150 +1,74 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { ArrowUp } from "lucide-react";
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
-  const handleScrollToSection = (e, id) => {
-    e.preventDefault();
-    const target = document.getElementById(id);
-    if (target) {
-      const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = target.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-    }
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const socialLinks = [
+    { name: "GitHub", href: "https://github.com" },
+    { name: "LinkedIn", href: "https://linkedin.com" },
+    { name: "Instagram", href: "https://www.instagram.com/vedxwayne/" },
+  ];
+
   return (
-    <footer className="bg-[#151D14] text-[#F3F7F2] pt-20 pb-12 w-full overflow-hidden border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col justify-between min-h-[50vh] gap-16">
-        {/* Top Information Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-left border-b border-white/5 pb-16">
-          {/* Expertise Column */}
-          <div className="flex flex-col gap-4">
-            <span className="text-[10px] font-mono tracking-[0.2em] text-white/40 uppercase">
-              Expertise
-            </span>
-            <ul className="flex flex-col gap-2 p-0 m-0 text-xs font-mono text-[#F3F7F2]/70 tracking-widest uppercase">
-              <li>AI Engineering</li>
-              <li>Automation Systems</li>
-              <li>Full Stack Development</li>
-              <li>IoT & Embedded Systems</li>
-            </ul>
+    <footer className="w-full py-16 bg-black text-white border-t border-neutral-900">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 md:px-16">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-neutral-900">
+          
+          {/* Brand Column */}
+          <div className="md:col-span-6 flex flex-col justify-between">
+            <div>
+              <span className="text-xl font-medium tracking-tight text-white block mb-2">
+                Vedansh Garg
+              </span>
+              <p className="text-sm text-neutral-400 font-light max-w-sm">
+                Engineering partner building first-generation AI architectures, full-stack applications, and commercial automations.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2 mt-8 text-xs font-mono text-neutral-400">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Available for select consulting & product roles</span>
+            </div>
           </div>
 
-          {/* Experience Column */}
-          <div className="flex flex-col gap-4">
-            <span className="text-[10px] font-mono tracking-[0.2em] text-white/40 uppercase">
-              About
+          {/* Social Links */}
+          <div className="md:col-span-4 flex flex-col gap-3">
+            <span className="text-xs font-mono uppercase tracking-widest text-neutral-500 mb-2">
+              Connect
             </span>
-            <div className="flex flex-col items-start gap-1">
-              <span className="text-sm font-semibold tracking-wide">
-                Student Developer & Builder
-              </span>
+            {socialLinks.map((social) => (
               <a
-                href="#projects"
-                onClick={(e) => handleScrollToSection(e, "projects")}
-                className="text-xs font-mono text-primary-red uppercase tracking-wider relative group py-1"
+                key={social.name}
+                href={social.href}
+                target="_blank"
+                rel="noreferrer"
+                className="text-sm text-neutral-400 hover:text-white transition-colors w-fit"
               >
-                View Work
-                <span className="absolute bottom-0 left-0 w-full h-[1px] bg-primary-red origin-left scale-x-100 group-hover:scale-x-0 transition-transform duration-300" />
-                <span className="absolute bottom-0 left-0 w-full h-[1px] bg-white origin-right scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                {social.name}
               </a>
-            </div>
+            ))}
           </div>
 
-          {/* Status Column */}
-          <div className="flex flex-col gap-4">
-            <span className="text-[10px] font-mono tracking-[0.2em] text-white/40 uppercase">
-              Status
-            </span>
-            <div className="flex flex-col gap-1 text-sm">
-              <span className="flex items-center gap-2 font-semibold">
-                <span className="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse" />
-                Currently Building
-              </span>
-              <span className="text-white/50 text-xs font-mono">
-                Class XII Student
-              </span>
-              <span className="text-white/30 text-xs font-mono">
-                Vadodara, Gujarat
-              </span>
-            </div>
+          {/* Back to top */}
+          <div className="md:col-span-2 flex md:justify-end items-start">
+            <button
+              onClick={scrollToTop}
+              className="inline-flex items-center gap-2 text-xs font-mono text-neutral-500 hover:text-white transition-colors"
+            >
+              <span>Back to top</span>
+              <ArrowUp size={14} />
+            </button>
           </div>
+
         </div>
 
-        {/* Center Hero Branding */}
-        <div className="w-full flex justify-center py-6 select-none">
-          <motion.h2
-            initial={{ opacity: 0.1, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.1 }}
-            transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
-            whileHover={{
-              textShadow: "0 0 50px rgba(127,168,115,0.45)",
-              color: "#FFFFFF",
-              scale: 1.02
-            }}
-            className="text-[14vw] md:text-[12vw] font-black tracking-tighter text-[#F3F7F2]/15 lowercase leading-none m-0 text-center uppercase cursor-default transition-all duration-500"
-          >
-            vedansh
-          </motion.h2>
-        </div>
-
-        {/* Bottom Contact Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left text-xs font-mono text-white/40 pt-8 border-t border-white/5">
-          {/* Left: Copyright */}
-          <div className="flex flex-col gap-1">
-            <span>&copy; {currentYear} Vedansh.</span>
-            <span className="text-[10px] opacity-65">Built with curiosity, caffeine & countless debugging sessions.</span>
-          </div>
-
-          {/* Center: Socials & Email */}
-          <div className="flex justify-start md:justify-center items-center">
-            <div className="flex flex-col items-start md:items-center gap-2">
-              <div className="flex gap-3 text-[10px] font-mono tracking-widest uppercase mb-0.5">
-                <a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white/40 hover:text-white transition-colors duration-300"
-                >
-                  GitHub
-                </a>
-                <span className="text-white/10">|</span>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white/40 hover:text-white transition-colors duration-300"
-                >
-                  LinkedIn
-                </a>
-                <span className="text-white/10">|</span>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white/40 hover:text-white transition-colors duration-300"
-                >
-                  Instagram
-                </a>
-              </div>
-              <a
-                href="mailto:vedanshgarg1979@gmail.com"
-                className="text-[#F3F7F2]/70 hover:text-white transition-colors duration-300 relative group py-0.5"
-              >
-                vedanshgarg1979@gmail.com
-                <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-primary-red transition-all duration-300 group-hover:w-full" />
-              </a>
-            </div>
-          </div>
-
-          {/* Right: Empty Spacer to maintain layout alignment */}
-          <div className="hidden md:block" />
+        {/* Bottom Bar */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-400">
+          <span>&copy; {new Date().getFullYear()} Vedansh Garg. All rights reserved.</span>
+          <span>Designed with minimalism & precision</span>
         </div>
       </div>
     </footer>

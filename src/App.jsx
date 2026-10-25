@@ -1,41 +1,27 @@
-import React, { useState } from "react";
-import Preloader from "./components/Preloader";
+import React from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
-import Services from "./components/Services";
+import Approach from "./components/Approach";
 import Projects from "./components/Projects";
+import Notes from "./components/Notes";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import { AnimatePresence } from "framer-motion";
 
 function App() {
-  const [loading, setLoading] = useState(true);
-
   return (
-    <>
-      {/* Premium Luxury Agency Preloader */}
-      <AnimatePresence mode="wait">
-        {loading && <Preloader onComplete={() => setLoading(false)} />}
-      </AnimatePresence>
-
-      {/* Main Content */}
-      <div className={`transition-all duration-1000 ${loading ? "opacity-0 scale-95" : "opacity-100 scale-100"}`}>
-        {!loading && (
-          <>
-            <Navbar />
-            <main className="w-full flex flex-col items-center">
-              <Hero />
-              <About />
-              <Services />
-              <Projects />
-              <Contact />
-            </main>
-            <Footer />
-          </>
-        )}
-      </div>
-    </>
+    <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
+      <Navbar />
+      <main className="w-full">
+        <Hero />
+        <About />
+        <Approach />
+        <Projects />
+        <Notes />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
   );
 }
 
